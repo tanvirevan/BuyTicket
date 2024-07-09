@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyTicket</title>
+    <link rel="icon" type="image/x-icon" href="/resources/images/icon.svg">
     <!-- Link Css style -->
      <link rel="stylesheet" href="/style/style.css">
     <!-- daisy UI and Tailwind -->
@@ -11,12 +12,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="ml-[5%] mr-[5%] mt-[15px]">
-    <header>
-        <nav class="Raleway">
-          <div class="navbar bg-base-100">
+    <header class="Raleway">
+        <nav>
+          <div class="navbar bg-base-100 pr-0 pl-0">
             <div class="navbar-start">
               <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <div tabindex="0" role="button" class="btn btn-ghost md:hidden pl-0 ml-0">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5"
@@ -39,10 +40,10 @@
                   <li><a>Search</a></li>
                 </ul>
               </div>
-              <a class="btn btn-ghost text-[36px] font-extrabold">BuyTicket</a>
+              <a class="btn btn-ghost text-[36px] font-extrabold hover:bg-white pl-0 ml-0">BuyTicket</a>
             </div>
 
-            <div class="navbar-center hidden lg:flex">
+            <div class="navbar-center hidden md:flex">
               <ul class="menu menu-horizontal px-1 font-medium text-[18px]">
                 <li><a>Home </a></li>
                 <li><a>About</a></li>
@@ -58,6 +59,54 @@
             </div>
           </div>
         </nav>
+        <!-- Header Section Body -->
+         <div class="background mb-50px rounded-2xl flex justify-center items-center">
+            <div class="text-center">
+              <h1 class="font-extrabold text-[64px] text-[#FFFFFF]">End-to-End Travel with</h1>
+              <h1 class="font-extrabold text-[64px] text-[#1dd100]">BuyTicket</h1>
+              <p class="font-normal text-[18px] text-[#FFFFFF] mb-[32px]">Yes, you can run unit tests and view the results directly within the app. The <br>integrated testing features allow for a streamlined .</p>
+              <a class="btn bg-[#1dd100] hover:bg-[#1dd100] border-none hover:border-none font-bold text-[20px]  text-[#030712] align-middle text-center">
+                Buy Tickets
+              </a>
+            </div>
+         </div>
+        <!-- End Header Section Body -->
+        
+        <!-- Header Importent Data -->
+        <div class="flex justify-center gap-[25px] mt-[-50px]">
+          <div class="bg-base-100 w-[280px] h-[130px] shadow-xl relative flex items-center content-center rounded-2xl border-b-2 border-[#1dd100]">
+            <div class="flex justify-center Inter ">
+              <img class="size-[100%] w-[20%]" src="/resources/images/people.png" alt="">
+              <div class="ml-[20px]">
+                <h2 class="card-title font-bold text-[36px]">500K+</h2>
+                <p class="font-normal text-[18px]">Registered users</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-base-100 w-[280px] h-[130px] shadow-xl relative flex items-center content-center rounded-2xl border-b-2 border-[#1dd100]">
+            <div class="flex justify-center Inter ">
+              <img class="size-[100%] w-[20%]" src="/resources/images/ticket-cupon.png" alt="">
+              <div class="ml-[20px]">
+                <h2 class="card-title font-bold text-[36px]">1.7 lacks</h2>
+                <p class="font-normal text-[18px]">Tickets sold</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-base-100 w-[280px] h-[130px] shadow-xl relative flex items-center content-center rounded-2xl border-b-2 border-[#1dd100]">
+            <div class="flex justify-center Inter ">
+              <img class="size-[100%] w-[20%]" src="/resources/images/stoppage.png" alt="">
+              <div class="ml-[20px]">
+                <h2 class="card-title font-bold text-[36px]">80K+</h2>
+                <p class="font-normal text-[18px]">Rental partners</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+         
     </header>
     <script src="https://kit.fontawesome.com/e8941e5832.js" crossorigin="anonymous"></script>
 </body>
