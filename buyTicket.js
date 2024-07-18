@@ -1,25 +1,87 @@
 
     let totalSeat = 0;
     let selectedSeats = {};
-    
-    function ticketSelected(element) {
-        const seatName = element.innerText.trim();
-        const bgColor = element.style.backgroundColor;
-        const price =  document.getElementById('ticketPice').innerText
-        if (bgColor === 'rgb(29, 209, 0)') 
-            {
-                element.style.backgroundColor = '#e6e6e7';
-                totalSeat -= 1;
-                delete selectedSeats[seatName];
-            } 
-        else 
-            {
-                element.style.backgroundColor = 'rgb(29, 209, 0)';
-                totalSeat += 1;
-                selectedSeats[seatName] = { seatType: 'Economy', price: price };
-            }
-        totalSelectedSeat();
-    }
+    const seatButtons = document.getElementsByClassName('seat-button');
+
+    function ticketSelected(element) 
+        {
+            const seatName = element.innerText.trim();
+            const bgColor = element.style.backgroundColor;
+            const price =  document.getElementById('ticketPice').innerText;
+            if (totalSeat < 4 )
+                {
+                    if (bgColor === 'rgb(29, 209, 0)') 
+                        {
+                            totalSeat -= 1;
+                            SeatAvailable(-1);
+                            element.style.backgroundColor = '#e6e6e7';
+                            // seatButton.classList.add('hover:bg-green-300');
+                            delete selectedSeats[seatName];
+                            totalSelectedSeat();
+                            cupon();
+                        } 
+                    else 
+                        {
+                            totalSeat += 1;
+                            SeatAvailable(1);
+                            element.style.backgroundColor = 'rgb(29, 209, 0)';
+                            selectedSeats[seatName] = { seatType: 'Economy', price: price };
+                        }
+        
+                    totalSelectedSeat();
+                    cupon();
+                }
+            else
+                {
+                    if (bgColor === 'rgb(29, 209, 0)') 
+                        {
+                            totalSeat -= 1;
+                            SeatAvailable(-1);
+                            element.style.backgroundColor = '#e6e6e7';
+                            delete selectedSeats[seatName];
+                        }
+                    totalSelectedSeat();
+                    cupon();
+                }
+                if (totalSeat === 4) 
+                    {
+                        for (let i = 0; i < seatButtons.length; i++) 
+                            {
+                                const seatButton = seatButtons[i];
+                    
+                                if (!selectedSeats[seatButton.innerText.trim()])
+                                     {
+                                        seatButton.disabled = true;
+                                        seatButton.classList.remove('hover:bg-green-300');
+                                        seatButton.classList.remove('btn');
+                                        seatButton.classList.add('opacity-60');
+                                        seatButton.classList.add('cursor-not-allowed');
+                                    } 
+                                else {
+                                    seatButton.disabled = false;
+                                    seatButton.classList.add('hover:bg-green-300');
+                                    seatButton.classList.add('btn');
+                                    seatButton.classList.remove('opacity-60');
+                                    seatButton.classList.remove('cursor-not-allowed');
+                                }
+                            }
+                    } 
+                else 
+                    {
+                        for (let i = 0; i < seatButtons.length; i++) 
+                            {
+                                const seatButton = seatButtons[i];
+                                seatButton.disabled = false;
+                                seatButton.classList.add('hover:bg-green-300');
+                                seatButton.classList.add('btn');
+                                seatButton.classList.remove('opacity-60');
+                                seatButton.classList.remove('cursor-not-allowed');
+
+                            }
+                    }
+
+        }
+
     
     function totalSelectedSeat() {
         const seatDetailsElement = document.getElementById('seatDetails');
@@ -51,54 +113,68 @@
             }
     }
     
-        
-function totalPrice()
-    {
-        let price  = document.getElementById('ticketPice').innerText;
-        let overallprice = totalSeat * price;
-        
-        document.getElementById('totalPrice').innerHTML = `<span>BDT ${overallprice}</span>`
-        document.getElementById('grandTotal').innerHTML = `<span>BDT ${overallprice}</span>`
-    }
-
-document.getElementById('phoneNum').addEventListener('input', function (e) 
-    {
-        this.value = this.value.replace(/[^0-9-\s()]/g, '');
-        nextButton();
-    });
-document.getElementById('passengerName').addEventListener('input', nextButton);
-
-
-document.getElementById('passengerName').addEventListener('focus', showError);
-document.getElementById('phoneNum').addEventListener('focus',  showErrorphn);
-
 
 function nextButton()
     {
-        let name = document.getElementById('passengerName').value;
         let number = document.getElementById('phoneNum').value;
+        let numberError = document.getElementById('phoneError');
 
         let NextButton = document.getElementById('nextButton');
 
-        let phonePattern = /^[0-9\s()-]+$/;
+        let phonePattern = /^01(?![12])[0-9\s()]*$/;
 
-        if(name.length >= 4 && phonePattern.test(number) && number.length == 11)
+        if(phonePattern.test(number) && number.length == 11)
             {
                 NextButton.disabled = false;
                 NextButton.classList.remove('opacity-50', 'cursor-not-allowed');
                 NextButton.classList.add('hover:bg-green-600');
-                showError();
-                showErrorphn();
+                numberError.classList.add('hidden');
+           
             }
         else
             {
                 NextButton.disabled = true;
                 NextButton.classList.add('opacity-50', 'cursor-not-allowed');
                 NextButton.classList.remove('hover:bg-green-600');
-                showError();
-                showErrorphn();
+                numberError.classList.remove('hidden');
+
             }
     }
+
+
+document.getElementById('phoneNum').addEventListener('input', function (e) 
+    {
+        this.value = this.value.replace(/[^0-9-\s()]/, '');
+        nextButton();
+    });
+
+
+function cupon()
+    {
+        let getCopun = document.getElementById('cupon');
+        let DiscountElement = document.getElementById('discountElement');
+        let Apply = document.getElementById('applyButton');
+        if(totalSeat === 4)
+            {
+                getCopun.disabled = false;
+                Apply.classList.add('btn');
+                Apply.classList.add('bg-green-500', 'hover:bg-green-500');
+                DiscountElement.classList.remove('hidden');
+
+            }
+        else
+            {
+                getCopun.disabled = true;
+                Apply.classList.remove('btn');
+                Apply.classList.remove('bg-green-500', 'hover:bg-green-500');
+                DiscountElement.classList.add('hidden');
+            }
+    }
+
+document.getElementById('applyButton').addEventListener('click', function (){
+    let discount = document.getElementById('discount');
+    discount.classList.add('hidden');
+})
 
 function showUser()
     {
@@ -112,3 +188,4 @@ function showUser()
                 usereliment.classList.add('hidden');
             }
     }
+

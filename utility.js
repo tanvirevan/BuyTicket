@@ -17,15 +17,35 @@ function showErrorphn()
     {
         let number = document.getElementById('phoneNum').value;
         let phoneError = document.getElementById('phoneError');
-        let phonePattern = /^[0-9\s()-]+$/;
+        let phonePattern = /^01(?![12])[0-9\s()]*$/;
 
-        if (phonePattern.test(number) && number.length == 11) 
+        if (phonePattern.test(number) && number.length === 11) 
             {
                 phoneError.classList.add('hidden');
+                
             } 
-        else 
+        else
             {
                 phoneError.classList.remove('hidden');
             }
         nextButton();
+    }
+    
+function totalPrice()
+    {
+        let price  = parseInt(document.getElementById('ticketPice').innerText);
+        let discountPrice = parseInt(document.getElementById('discountPrice').innerText);
+        let overallprice = totalSeat * price;
+        let grandTotal = overallprice - discountPrice;
+
+        document.getElementById('discountPrice').innerText = discountPrice;
+        document.getElementById('totalPrice').innerHTML = overallprice;
+        document.getElementById('grandTotal').innerHTML = grandTotal;
+    }
+
+function SeatAvailable(value)
+    {
+        let available = parseInt(document.getElementById('availableSeat').innerText);
+        let newAvailable = (available - value);
+        document.getElementById('availableSeat').innerText = newAvailable;
     }
