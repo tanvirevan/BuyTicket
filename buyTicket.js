@@ -169,6 +169,8 @@ function cupon()
             {
                 DiscountInput.classList.add('hidden');
                 DiscountElement.classList.add('hidden');
+                discountPrice = 0;
+                totalPrice();
             }
     }
 
@@ -190,7 +192,7 @@ document.getElementById('applyButton').addEventListener('click', function()
 
         totalPrice();
     
-        DiscountInput.classList.add('hidden');
+        DiscountInput.classList.add('hidden'); 
         DiscountElement.classList.remove('hidden');
         getCoupon.value = "";
     
