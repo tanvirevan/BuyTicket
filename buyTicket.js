@@ -1,8 +1,8 @@
 
     let totalSeat = 0;
     let selectedSeats = {};
-    let discountPrice = 0;
     let overallprice = 0;
+    let discountPrice = 0; 
 
     const seatButtons = document.getElementsByClassName('seat-button');
 
@@ -154,44 +154,50 @@ document.getElementById('phoneNum').addEventListener('input', function (e)
 
 function cupon()
     {
-        let getCopun = document.getElementById('cupon');
+
+        let DiscountInput = document.getElementById('discount');
         let DiscountElement = document.getElementById('discountElement');
-        let Apply = document.getElementById('applyButton');
         if(totalSeat === 4)
             {
-                getCopun.disabled = false;
-                Apply.disabled = false;
-                Apply.classList.add('btn','bg-green-500', 'hover:bg-green-500');
-                Apply.classList.remove('cursor-not-allowed');
-                getCopun.classList.remove('cursor-not-allowed');
-                DiscountElement.classList.remove('hidden');
-
+                DiscountInput.classList.remove('hidden');
+                document.getElementById('cupon').addEventListener('input', function() 
+                {
+                    copunValue();
+                });
             }
         else
             {
-                getCopun.disabled = true;
-                Apply.disabled = true;
-                Apply.classList.remove('btn','bg-green-500', 'hover:bg-green-500');
-                Apply.classList.add('cursor-not-allowed');
-                getCopun.classList.add('cursor-not-allowed');
+                DiscountInput.classList.add('hidden');
                 DiscountElement.classList.add('hidden');
             }
     }
 
-document.getElementById('applyButton').addEventListener('click', function (){
-    let discountElement = document.getElementById('discount');
-    let getCopun = document.getElementById('cupon');
-    if(getCopun.value === 'NEW15')
-        {
-            discountPrice = (overallprice*15)/100;
-        }
-    else if(getCopun.value === 'Couple 20')
-        {
-            discountPrice = (overallprice*20)/100;
-        }
-    totalPrice();
-    discountElement.classList.add('hidden');
-})
+document.getElementById('applyButton').addEventListener('click', function() 
+    {
+        let DiscountInput = document.getElementById('discount');
+        let DiscountElement = document.getElementById('discountElement');
+        let getCoupon = document.getElementById('cupon');
+  
+    
+        if (getCoupon.value.trim() === "NEW15") 
+            {
+                discountPrice = (overallprice * 15) / 100;
+            } 
+        else if (getCoupon.value.trim() === "Couple 20") 
+            {
+                discountPrice = (overallprice * 20) / 100;
+            }
+
+        totalPrice();
+    
+        DiscountInput.classList.add('hidden');
+        DiscountElement.classList.remove('hidden');
+        getCoupon.value = "";
+    
+        copunValue();
+    });
+    
+    
 
 function showUser()
     {
