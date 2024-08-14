@@ -1,6 +1,9 @@
 
     let totalSeat = 0;
     let selectedSeats = {};
+    let discountPrice = 0;
+    let overallprice = 0;
+
     const seatButtons = document.getElementsByClassName('seat-button');
 
     function ticketSelected(element) 
@@ -157,23 +160,37 @@ function cupon()
         if(totalSeat === 4)
             {
                 getCopun.disabled = false;
-                Apply.classList.add('btn');
-                Apply.classList.add('bg-green-500', 'hover:bg-green-500');
+                Apply.disabled = false;
+                Apply.classList.add('btn','bg-green-500', 'hover:bg-green-500');
+                Apply.classList.remove('cursor-not-allowed');
+                getCopun.classList.remove('cursor-not-allowed');
                 DiscountElement.classList.remove('hidden');
 
             }
         else
             {
                 getCopun.disabled = true;
-                Apply.classList.remove('btn');
-                Apply.classList.remove('bg-green-500', 'hover:bg-green-500');
+                Apply.disabled = true;
+                Apply.classList.remove('btn','bg-green-500', 'hover:bg-green-500');
+                Apply.classList.add('cursor-not-allowed');
+                getCopun.classList.add('cursor-not-allowed');
                 DiscountElement.classList.add('hidden');
             }
     }
 
 document.getElementById('applyButton').addEventListener('click', function (){
-    let discount = document.getElementById('discount');
-    discount.classList.add('hidden');
+    let discountElement = document.getElementById('discount');
+    let getCopun = document.getElementById('cupon');
+    if(getCopun.value === 'NEW15')
+        {
+            discountPrice = (overallprice*15)/100;
+        }
+    else if(getCopun.value === 'Couple 20')
+        {
+            discountPrice = (overallprice*20)/100;
+        }
+    totalPrice();
+    discountElement.classList.add('hidden');
 })
 
 function showUser()

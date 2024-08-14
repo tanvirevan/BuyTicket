@@ -34,7 +34,7 @@ function showErrorphn()
 function totalPrice()
     {
         let price  = parseInt(document.getElementById('ticketPice').innerText);
-        let discountPrice = parseInt(document.getElementById('discountPrice').innerText);
+        
         let overallprice = totalSeat * price;
         let grandTotal = overallprice - discountPrice;
 
