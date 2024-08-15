@@ -60,13 +60,14 @@
                                         seatButton.classList.add('opacity-60');
                                         seatButton.classList.add('cursor-not-allowed');
                                     } 
-                                else {
-                                    seatButton.disabled = false;
-                                    seatButton.classList.add('hover:bg-green-300');
-                                    seatButton.classList.add('btn');
-                                    seatButton.classList.remove('opacity-60');
-                                    seatButton.classList.remove('cursor-not-allowed');
-                                }
+                                else 
+                                    {
+                                        seatButton.disabled = false;
+                                        seatButton.classList.add('hover:bg-green-300');
+                                        seatButton.classList.add('btn');
+                                        seatButton.classList.remove('opacity-60');
+                                        seatButton.classList.remove('cursor-not-allowed');
+                                    }
                             }
                     } 
                 else 
@@ -151,6 +152,22 @@ document.getElementById('phoneNum').addEventListener('input', function (e)
         nextButton();
     });
 
+document.getElementById('nextButton').addEventListener('click', function() {
+        for (let i = 0; i < seatButtons.length; i++) 
+            {
+                let seatElement = seatButtons[i];
+                
+                if(selectedSeats[seatElement.innerText.trim()])
+                    {
+                        seatElement.disabled = true;
+                        seatElement.classList.remove('hover:bg-green-300');
+                        seatElement.classList.remove('btn');
+                        seatElement.classList.add('opacity-60');
+                        seatElement.classList.add('cursor-not-allowed');
+                    }
+            }
+    });
+    
 
 function cupon()
     {

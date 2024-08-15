@@ -40,7 +40,7 @@ function totalPrice()
 
         document.getElementById('totalPrice').innerHTML = overallprice.toFixed(2);
         document.getElementById('grandTotal').innerHTML = grandTotal.toFixed(2);
-        document.getElementById('discountPrice').innerText = discountPrice.toFixed(2);
+        document.getElementById('discountPrice').innerText = discountPrice.toFixed(2); 
     }
 
 function SeatAvailable(value)

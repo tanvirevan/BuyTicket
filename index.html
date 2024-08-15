@@ -553,10 +553,32 @@
                           <input type="email" id="emailId" placeholder="Enter your email ID"
                               class="appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
                       </div>
-                      <button id="nextButton" type="submit" class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline opacity-50 cursor-not-allowed" disabled>
+                      <button id="nextButton" onclick="successBuy.showModal()" type="submit" class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline opacity-50 cursor-not-allowed" disabled>
                           Next
                       </button>
                   </form>
+
+                    <dialog id="successBuy" class="modal">
+                      <div class="modal-box">
+                          <div class="flex justify-center">
+                            <div>
+                              <img src="/resources/images/success.png" alt="">
+                              <h3 class="text-[24px] font-bold text-[#27AE60] mt-3">SUCCESS</h3>
+                            </div>
+                          </div>
+                          <p class="py-4 font-medium text-[20px] flex justify-center items-center">
+                            Thank you for Booking Our Bus Seats.We are working hard to find the best service and deals for you.
+                          </p>
+                          
+                          <P class="font-light text-[20px] flex justify-center items-center">Shortly you will find a confirmation in your email.</p>
+                          <div class="modal-action w-full flex justify-center">
+                            <form method="dialog">
+                              <button class="btn w-full bg-green-500 text-white font-bold py-2 px-4 rounded">Continue</button>
+                            </form>
+                          </div>
+                      </div>
+                    </dialog>
+
                   <div class="mt-4 text-sm text-gray-600 text-center">
                       <a href="#" class="underline">Terms and Conditions</a>
                       <span class="mx-2">|</span>
