@@ -166,6 +166,13 @@ document.getElementById('nextButton').addEventListener('click', function() {
                         seatElement.classList.add('cursor-not-allowed');
                     }
             }
+        selectedSeats = {};
+        totalPrice();
+        document.getElementById('phoneNum').value = "";
+        let NextButton = document.getElementById('nextButton');
+        NextButton.disabled = true;
+        NextButton.classList.add('opacity-50', 'cursor-not-allowed');
+        NextButton.classList.remove('hover:bg-green-600');
     });
     
 
